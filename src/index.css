@@ -1,4 +1,16 @@
 :root {
+  /* 
+    "The content-visibility property enables the user agent to skip an element's 
+    rendering work, including layout and painting, until it is needed. Because 
+    rendering is skipped, if a large portion of your content is off-screen, using 
+    the content-visibility property makes the initial user load much faster. 
+    It also allows for faster interactions with the on-screen content."
+
+    https://web.dev/articles/content-visibility
+    https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility
+  */
+  content-visibility: auto;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -23,11 +35,15 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
+  display: inline-block;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-width: 100dvw;
+  min-height: 100dvh;
+  background-image: url('./assets/trade-journal-wallpaper.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: local;
 }
 
 h1 {

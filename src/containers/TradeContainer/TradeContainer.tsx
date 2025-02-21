@@ -1,9 +1,9 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent, ReactNode } from "react";
 import Trade from "../../components/Trade/Trade";
 import { useParams } from "react-router";
-import { GET_TRADE } from "../LandingPage/Queries";
+import { GET_TRADE } from "./Queries";
 import { useQuery } from "@apollo/client";
-import { Route, Routes } from "react-router";
+import Container from "@mui/material/Container";
 
 const TradeContainer: FunctionComponent = (): ReactNode => {
   let params = useParams();
@@ -14,7 +14,11 @@ const TradeContainer: FunctionComponent = (): ReactNode => {
   if (loading) return <h3>Loading...</h3>;
   if (error) return <h1>{error.message}</h1>;
 
-  return <Trade trade={data.trade} />;
+  return (
+    <Container>
+      <Trade trade={data.trade} />
+    </Container>
+  );
 };
 
 export default TradeContainer;

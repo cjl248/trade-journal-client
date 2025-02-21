@@ -1,7 +1,9 @@
-import { FunctionComponent } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import { FunctionComponent } from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography, { TypographyProps } from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router';
 
 export type TradeType = {
   id: string;
@@ -13,23 +15,38 @@ export type TradeType = {
   notes: string;
 };
 
-type Props = { trade: TradeType };
+type TradeProps = { trade: TradeType };
 
-const style = {
-  width: "200px",
-};
+export const OrangeTypography = styled(Typography)<TypographyProps>(({ theme }) => ({
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  color: '#db8b7d',
+  ':hover': {
+    color: '#f63858',
+    fontWeight: 'bold',
+    cursor: 'grab',
+  },
+}));
 
-const Trade: FunctionComponent<Props> = props => {
+const Trade: FunctionComponent<TradeProps> = props => {
+  let navigate = useNavigate();
+  const { trade: { id = '', symbol = '', price, quantity } = {} } = props;
   return (
-    <Card sx={style}>
+    <Card
+      raised
+      onClick={() => navigate(`/trades/${id}`)}>
       <CardContent>
-        <Typography gutterBottom color="primary" variant="h4">{`Ticker: ${props.trade.symbol}`}</Typography>
+        <OrangeTypography
+          variant="h6"
+          align="center">
+          {`Ticker: ${symbol}`}
+        </OrangeTypography>
       </CardContent>
       <CardContent>
-        <Typography gutterBottom color="primary" variant="body1">{`Price: ${props.trade.price}`}</Typography>
+        <OrangeTypography variant="body1">{`Price: $${price}`}</OrangeTypography>
       </CardContent>
       <CardContent>
-        <Typography gutterBottom color="primary" variant="body1">{`Quantity: ${props.trade.quantity}`}</Typography>
+        <OrangeTypography variant="body1">{`Quantity: ${quantity}`}</OrangeTypography>
       </CardContent>
     </Card>
   );

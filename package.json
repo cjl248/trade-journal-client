@@ -16,16 +16,18 @@
     "@fontsource/roboto": "^5.1.1",
     "@mui/icons-material": "^6.4.3",
     "@mui/material": "^6.4.3",
+    "@mui/material-pigment-css": "^6.4.3",
+    "@mui/system": "^6.4.3",
+    "@pigment-css/react": "^0.0.30",
     "body-parser": "^1.20.3",
     "graphql": "^16.10.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router": "^7.1.5",
-    "typedoc": "^0.27.6",
-    "typedoc-github-theme": "^0.2.1"
+    "react-router": "^7.1.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@pigment-css/vite-plugin": "^0.0.30",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
@@ -34,6 +36,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
+    "sass": "^1.85.0",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5"
