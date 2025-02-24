@@ -4,23 +4,16 @@ import { useQuery } from '@apollo/client';
 import { GET_TRADES } from './Queries';
 import Trade from '../../components/Trade/Trade';
 import { TradeType } from '../../components/Trade/Trade';
-import { ImmediatelyInvokedArrowFunction, ImmediatelyInvokedFunctionExpression } from 'typescript';
 
 type Error = { message: String };
 
-type TradeTypeList = Array<TradeType>;
-
-const tradeItemStyle = {
-  display: 'inline-flex',
-  flexFlow: 'column wrap', // val1: <flex-direction>, val2: <wrap> //
-  flex: '1, 1, auto', // val1: <flex-grow>, val2: <flex-shrink>, val3: <flex-basis> //
-  justifyContent: 'center',
-  alignContent: 'center',
-  gap: '1rem 0.5rem',
+const LandingPageSx = {
+  justifyContent: 'space-evenly',
+  flexFlow: 'row wrap',
 };
 
 const LandingPage: FunctionComponent = (): ReactNode => {
-  const { loading, error, data: { trades = {} } = [] } = useQuery(GET_TRADES);
+  const { loading, error, data: { trades = [] } = {} } = useQuery(GET_TRADES);
 
   const handleError = (error: Error) => {
     return <h1>{error.message}</h1>;
@@ -31,14 +24,21 @@ const LandingPage: FunctionComponent = (): ReactNode => {
 
   return (
     <Grid
+      sx={LandingPageSx}
       container
-      spacing={2}
-      columns={4}>
-      {trades.map((trade: TradeType) => (
-        <Trade
+      spacing={1.5}
+      size={1}>
+      {(trades ?? []).map((trade: TradeType) => (
+        <Grid
           key={trade.id}
-          trade={trade}
-        />
+          sx={{
+            height: '300px',
+            maxWidth: '200px',
+            margin: 'auto',
+            flex: '3 1 300px',
+          }}>
+          <Trade trade={trade} />
+        </Grid>
       ))}
     </Grid>
   );

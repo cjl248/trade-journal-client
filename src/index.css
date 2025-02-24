@@ -1,3 +1,11 @@
+html {
+  display: inline-block;
+  place-items: center;
+
+  min-width: min(100svw, 100dvw);
+  min-height: max(100lvh, 100dvh);
+}
+
 :root {
   /* 
     "The content-visibility property enables the user agent to skip an element's 
@@ -17,7 +25,6 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,16 +42,28 @@ a:hover {
 }
 
 body {
-  display: inline-block;
-  place-items: center;
-  min-width: 100dvw;
-  min-height: 100dvh;
+  display: inherit;
+  place-items: inherit;
+  min-width: inherit;
+  min-height: inherit;
+
+  background-color: #242424;
+
   background-image: url('./assets/trade-journal-wallpaper.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: local;
+
+  /* disabling overscroll-behavior-* prevents common user actions like swiping 
+  down to refresh on mobile or swiping left & right on desktop to navigate through history.
+  
+  overscroll-behavior: none; */
+  overflow: clip;
 }
+
+/*
+Vite rendered CSS
 
 h1 {
   font-size: 3.2em;
@@ -82,3 +101,5 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+*/

@@ -1,14 +1,10 @@
 #root {
-  max-width: 1280px;
   min-width: 320px;
   max-height: 780px;
   min-height: 270px;
 
-  margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem;
 
   text-align: center;
-  justify-content: space-evenly;
   overflow: scroll;
-  overscroll-behavior-block: contain;
 }
