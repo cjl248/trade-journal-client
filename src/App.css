@@ -1,6 +1,10 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  min-width: 320px;
+  max-height: 780px;
+  min-height: 270px;
+
   padding: 1rem;
+
   text-align: center;
+  overflow: scroll;
 }

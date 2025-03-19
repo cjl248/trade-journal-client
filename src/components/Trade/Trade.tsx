@@ -1,7 +1,10 @@
-import { FunctionComponent } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import { FunctionComponent } from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography, { TypographyProps } from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router';
+import { useTheme } from '@pigment-css/react';
 
 export type TradeType = {
   id: string;
@@ -13,25 +16,52 @@ export type TradeType = {
   notes: string;
 };
 
-type Props = { trade: TradeType };
+type TradeProps = { trade: TradeType };
 
-const style = {
-  width: "200px",
-};
+export const OrangeTypography = styled(Typography)<TypographyProps>(({ theme }) => ({
+  padding: theme.spacing(1),
+  margin: theme.spacing(2),
+  textAlign: 'center',
+  color: '#db8b7d',
+  align: 'center',
+  ':hover': {
+    color: '#f63858',
+    cursor: 'grab',
+  },
+}));
 
-const Trade: FunctionComponent<Props> = props => {
+const Trade: FunctionComponent<TradeProps> = props => {
+  let navigate = useNavigate();
+  let theme = useTheme();
+  // console.log({ theme });
+  const { trade: { id = '', symbol = '', price, quantity } = {} } = props;
   return (
-    <Card sx={style}>
-      <CardContent>
-        <Typography gutterBottom color="primary" variant="h4">{`Ticker: ${props.trade.symbol}`}</Typography>
-      </CardContent>
-      <CardContent>
-        <Typography gutterBottom color="primary" variant="body1">{`Price: ${props.trade.price}`}</Typography>
-      </CardContent>
-      <CardContent>
-        <Typography gutterBottom color="primary" variant="body1">{`Quantity: ${props.trade.quantity}`}</Typography>
-      </CardContent>
-    </Card>
+    <Card
+      sx={{
+        maxHight: 'inherit',
+        backgroundColor: 'cream',
+        '> div': {
+          padding: '0',
+          margin: '0',
+        },
+      }}
+      raised
+      onClick={() => {
+        navigate(`/trades/${id}`);
+      }}
+      children={
+        <>
+          <CardContent
+            children={<OrangeTypography variant="h6">{`Ticker: ${symbol}`}</OrangeTypography>}
+          />
+          <CardContent
+            children={<OrangeTypography component="p">{`Price: $${price}`}</OrangeTypography>}
+          />
+          <CardContent
+            children={<OrangeTypography component="p">{`Quantity: ${quantity}`}</OrangeTypography>}
+          />
+        </>
+      }></Card>
   );
 };
 
